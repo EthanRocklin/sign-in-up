@@ -5,10 +5,15 @@ import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.util.Patterns;
+import android.util.TypedValue;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,6 +27,7 @@ import com.example.chat_app.R;
 import com.example.chat_app.databinding.ActivitySignInBinding;
 import com.example.chat_app.utilities.Constants;
 import com.example.chat_app.utilities.PreferenceManager;
+import com.example.chat_app.utilities.TriState;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -85,6 +91,29 @@ public class SignInActivity extends AppCompatActivity {
 
     /**
      *
+     * @param inputField
+     */
+    private void highlightInputField(EditText inputField, TriState isValid) {
+        // Gets the GradientDrawable of the EditText element to change the
+        Drawable background = inputField.getBackground();
+        if (background instanceof GradientDrawable) {
+            GradientDrawable gradient = (GradientDrawable) background.mutate();
+            int strokePx = (int) TypedValue.applyDimension(
+                    TypedValue.COMPLEX_UNIT_DIP, 2,
+                    inputField.getResources().getDisplayMetrics());
+            // Colors based on the credential being valid
+            int color = Color.argb(255, 0, 0, 0);
+            if (isValid == TriState.TRUE) {
+                color = Color.argb(255, 125, 255, 89);
+            } else if (isValid == TriState.FALSE) {
+                color = Color.argb(255, 255, 89, 100);
+            }
+            gradient.setStroke(strokePx, color);
+        }
+    }
+
+    /**
+     *
      * @param isLoading
      */
     private void loading(Boolean isLoading) {
@@ -97,6 +126,9 @@ public class SignInActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     *
+     */
     private void signIn() {
         loading(true);
         FirebaseFirestore database = FirebaseFirestore.getInstance();
@@ -108,35 +140,52 @@ public class SignInActivity extends AppCompatActivity {
                     if (task.isSuccessful()
                             && task.getResult() != null
                             && !task.getResult().getDocuments().isEmpty()) {
+                        // Highlights input fields with green indicating valid credentials
+                        highlightInputField(binding.inputEmail, TriState.TRUE);
+                        highlightInputField(binding.inputPassword, TriState.TRUE);
+                        // Creates and configures snapshot with user's info
                         DocumentSnapshot documentSnapshot = task.getResult().getDocuments().get(0);
                         preferenceManager.putBoolean(Constants.KEY_IS_SIGNED_IN, true);
                         preferenceManager.putString(Constants.KEY_USER_ID, documentSnapshot.getId());
                         preferenceManager.putString(Constants.KEY_NAME, documentSnapshot.getString(Constants.KEY_NAME));
                         preferenceManager.putString(Constants.KEY_IMAGE, documentSnapshot.getString(Constants.KEY_IMAGE));;
-
+                        // Creates a new Intent for starting the application upon successful login
                         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                         startActivity(intent);
-
                     } else {
                         loading(false);
-                        showToast("Unable to Login");
+                        highlightInputField(binding.inputEmail, TriState.FALSE);
+                        highlightInputField(binding.inputPassword, TriState.FALSE);
+                        showToast("Unable to Login.\nCheck email and password");
                     }
                 });
     }
 
+    /**
+     *
+     * @param message
+     */
     private void showToast(String message) {
         Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
     }
 
+    /**
+     *
+     * @return
+     */
     private boolean validateCredentials() {
         if (binding.inputEmail.getText().toString().trim().isEmpty()) {
+            highlightInputField(binding.inputEmail, TriState.FALSE);
             showToast("Please Enter Your Email");
             return false;
         } else if (!Patterns.EMAIL_ADDRESS.matcher(binding.inputEmail.getText().toString()).matches()) {
-            showToast("Please Enter A Valid Email");
+            highlightInputField(binding.inputEmail, TriState.FALSE);
+            showToast("Please Enter A Valid Email Address");
             return false;
         } else if (binding.inputPassword.getText().toString().trim().isEmpty()) {
+            highlightInputField(binding.inputEmail, TriState.UNKNOWN);
+            highlightInputField(binding.inputPassword, TriState.FALSE);
             showToast("Please Enter Your Password");
             return false;
         }

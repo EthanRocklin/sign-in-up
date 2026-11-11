@@ -7,14 +7,18 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.GradientDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Base64;
 import android.util.Log;
 import android.util.Patterns;
+import android.util.TypedValue;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.activity.result.ActivityResultLauncher;
@@ -24,6 +28,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.chat_app.databinding.ActivitySignUpBinding;
 import com.example.chat_app.utilities.Constants;
 import com.example.chat_app.utilities.PreferenceManager;
+import com.example.chat_app.utilities.TriState;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.io.ByteArrayOutputStream;
@@ -143,6 +148,93 @@ public class SignUpActivity extends AppCompatActivity {
 
     /**
      *
+     * @param text
+     * @return
+     */
+    private boolean checkForLowercase(String text) {
+        int count = 0;
+        // Scans the inputted password for lowercase letters
+        for (int i = 0; i < text.length(); i++) {
+            if (Character.isLowerCase(text.charAt(i))) {
+                count++;
+            }
+        }
+        return count >= 4;
+    }
+
+    /**
+     *
+     * @param text
+     * @return
+     */
+    private boolean checkForNum(String text) {
+        int count = 0;
+        // Scans the inputted password for lowercase letters
+        for (int i = 0; i < text.length(); i++) {
+            if (Character.isDigit(text.charAt(i))) {
+                count++;
+            }
+        }
+        return count >= 2;
+    }
+
+    /**
+     *
+     * @param text
+     * @return
+     */
+    private boolean checkForSpecialChar(String text) {
+        int count = 0;
+        // Scans the inputted password for lowercase letters
+        for (int i = 0; i < text.length() ; i++) {
+            if (!Character.isLetterOrDigit(text.charAt(i))) {
+                count++;
+            }
+        }
+        return count >= 2;
+    }
+
+    /**
+     *
+     * @param text
+     * @return
+     */
+    private boolean checkForUppercase(String text) {
+        int count = 0;
+        // Scans the inputted password for lowercase letters
+        for (int i = 0; i < text.length(); i++) {
+            if (Character.isUpperCase(text.charAt(i))) {
+                count++;
+            }
+        }
+        return count >= 2;
+    }
+
+    /**
+     *
+     * @param inputField
+     */
+    private void highlightInputField(EditText inputField, TriState isValid) {
+        // Gets the GradientDrawable of the EditText element to change the
+        Drawable background = inputField.getBackground();
+        if (background instanceof GradientDrawable) {
+            GradientDrawable gradient = (GradientDrawable) background.mutate();
+            int strokePx = (int) TypedValue.applyDimension(
+                    TypedValue.COMPLEX_UNIT_DIP, 2,
+                    inputField.getResources().getDisplayMetrics());
+            // Colors based on the credential being valid
+            int color = Color.argb(255, 0, 0, 0);
+            if (isValid == TriState.TRUE) {
+                color = Color.argb(255, 125, 255, 89);
+            } else if (isValid == TriState.FALSE) {
+                color = Color.argb(255, 255, 89, 100);
+            }
+            gradient.setStroke(strokePx, color);
+        }
+    }
+
+    /**
+     *
      * @param message
      */
     private void showToast(String message) {
@@ -162,11 +254,16 @@ public class SignUpActivity extends AppCompatActivity {
         user.put(Constants.KEY_EMAIL, binding.inputEmail.getText().toString());
         user.put(Constants.KEY_PASSWORD, binding.inputPassword.getText().toString());
         user.put(Constants.KEY_IMAGE, encodedImage);
-
+        //
         database.collection(Constants.KEY_COLLECTION_USERS)
                 .add(user)
                 .addOnSuccessListener(documentReference -> {
                     loading(false);
+                    // Highlights input fields with green indicating valid credentials
+                    highlightInputField(binding.inputName, TriState.TRUE);
+                    highlightInputField(binding.inputEmail, TriState.TRUE);
+                    highlightInputField(binding.inputPassword, TriState.TRUE);
+                    highlightInputField(binding.inputConfirmPassword, TriState.TRUE);
                     preferenceManager.putBoolean(Constants.KEY_IS_SIGNED_IN, true);
                     preferenceManager.putString(Constants.KEY_NAME, binding.inputName.getText().toString());
                     preferenceManager.putString(Constants.KEY_IMAGE, encodedImage);
@@ -181,24 +278,112 @@ public class SignUpActivity extends AppCompatActivity {
                 });
     }
 
+    /**
+     *
+     * @return
+     */
     private Boolean isValidDetails() {
+        String nameTrimmed = binding.inputName.getText().toString().trim();
+        String emailTrimmed = binding.inputEmail.getText().toString().trim();
+        String passwordTrimmed = binding.inputPassword.getText().toString().trim();
+        String confirmPasswordTrimmed = binding.inputConfirmPassword.getText().toString().trim();
         if (encodedImage == null) {
             showToast("Please Select An Image");
             return false;
-        } else if (binding.inputName.getText().toString().trim().isEmpty()) {
+        }
+        // Checks all requirements for account details and returns the result
+        return isValidName(nameTrimmed)
+                && isValidEmail(emailTrimmed)
+                && isValidPassword(passwordTrimmed)
+                && isValidPasswordMatch(passwordTrimmed, confirmPasswordTrimmed);
+    }
+
+    /**
+     *
+     * @param nameTrimmed
+     * @return
+     */
+    private Boolean isValidName(String nameTrimmed) {
+        if (nameTrimmed.isEmpty()) {
+            highlightInputField(binding.inputName, TriState.FALSE);
             showToast("Please Enter Your Name");
             return false;
-        } else if (binding.inputEmail.getText().toString().trim().isEmpty()) {
+        } else if (nameTrimmed.length() > 45) {
+            highlightInputField(binding.inputName, TriState.FALSE);
+            showToast("Name must not exceed 45 characters");
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     *
+     * @param emailTrimmed
+     * @return
+     */
+    private Boolean isValidEmail(String emailTrimmed) {
+        highlightInputField(binding.inputName, TriState.UNKNOWN);
+        if (emailTrimmed.isEmpty()) {
+            highlightInputField(binding.inputEmail, TriState.FALSE);
             showToast("Please Enter Your Email");
             return false;
-        } else if (!Patterns.EMAIL_ADDRESS.matcher(binding.inputEmail.getText().toString()).matches()) {
+        } else if (!Patterns.EMAIL_ADDRESS.matcher(emailTrimmed).matches()) {
+            highlightInputField(binding.inputEmail, TriState.FALSE);
             showToast("Please Enter A Valid Email");
             return false;
-        } else if (binding.inputPassword.getText().toString().trim().isEmpty()) {
+        } else if (emailTrimmed.length() > 254) {
+            highlightInputField(binding.inputEmail, TriState.FALSE);
+            showToast("Email must not exceed 254 characters");
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     *
+     * @param passwordTrimmed
+     * @return
+     */
+    private Boolean isValidPassword(String passwordTrimmed) {
+        highlightInputField(binding.inputEmail, TriState.UNKNOWN);
+        if (passwordTrimmed.isEmpty()) {
+            highlightInputField(binding.inputPassword, TriState.FALSE);
             showToast("Please Enter Your Password");
             return false;
-        } else if (!binding.inputPassword.getText().toString()
-                .equals(binding.inputConfirmPassword.getText().toString())) {
+        } else if (!checkForUppercase(passwordTrimmed)) {
+            highlightInputField(binding.inputPassword, TriState.FALSE);
+            showToast("Password needs at least 2 uppercase letters");
+            return false;
+        } else if (!checkForLowercase(passwordTrimmed)) {
+            highlightInputField(binding.inputPassword, TriState.FALSE);
+            showToast("Password needs at least 4 lowercase letters");
+            return false;
+        } else if (!checkForNum(passwordTrimmed)) {
+            highlightInputField(binding.inputPassword, TriState.FALSE);
+            showToast("Password needs at least 2 digits");
+            return false;
+        } else if (!checkForSpecialChar(passwordTrimmed)) {
+            highlightInputField(binding.inputPassword, TriState.FALSE);
+            showToast("Password needs at least 2 special characters");
+            return false;
+        } else if (passwordTrimmed.length() > 45) {
+            highlightInputField(binding.inputPassword, TriState.FALSE);
+            showToast("Password must not exceed 45 characters");
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     *
+     * @param passwordTrimmed
+     * @param confirmPasswordTrimmed
+     * @return
+     */
+    private Boolean isValidPasswordMatch(String passwordTrimmed, String confirmPasswordTrimmed) {
+        if (!passwordTrimmed.equals(confirmPasswordTrimmed)) {
+            highlightInputField(binding.inputPassword, TriState.FALSE);
+            highlightInputField(binding.inputConfirmPassword, TriState.FALSE);
             showToast("Passwords Do Not Match");
             return false;
         }

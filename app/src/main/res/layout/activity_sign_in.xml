@@ -33,6 +33,7 @@
             android:layout_marginTop="30dp"
             android:src="@drawable/app_icon"/>
 
+        <!-- Input Fields -->
         <EditText
             android:id="@+id/inputEmail"
             android:layout_width="match_parent"
@@ -50,24 +51,37 @@
             android:textColorHint="@color/primary_text"
             android:textSize="20sp" />
 
-        <EditText
-            android:id="@+id/inputPassword"
+        <!-- Password Field w/ See Password Toggle -->
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
-            android:fontFamily="@font/courgette"
-            android:hint="@string/hint_password"
-            android:background="@drawable/background_input"
-            android:imeOptions="actionNext"
-            android:importantForAutofill="no"
-            android:inputType="textPassword"
-            android:paddingStart="16dp"
-            android:paddingEnd="16dp"
-            android:textAlignment="gravity"
-            android:textColor="@color/primary_text"
-            android:textColorHint="@color/primary_text"
-            android:textSize="20sp"/>
+            app:endIconMode="password_toggle"
+            app:endIconTint="@color/see_password_icon"
+            app:hintEnabled="false"
+            app:boxBackgroundMode="none">
 
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/inputPassword"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:fontFamily="@font/courgette"
+                android:hint="@string/hint_password"
+                android:background="@drawable/background_input"
+                android:imeOptions="actionNext"
+                android:importantForAutofill="no"
+                android:inputType="textPassword"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:paddingTop="0dp"
+                android:paddingBottom="0dp"
+                android:textColor="@color/primary_text"
+                android:textColorHint="@color/primary_text"
+                android:textSize="20sp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Login and Create Account Buttons -->
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -80,6 +94,7 @@
                 android:layout_height="60dp"
                 android:layout_marginTop="20dp"
                 android:layout_gravity="top|center"
+                android:backgroundTint="@color/primary"
                 android:text="@string/sign_in"
                 android:textColor="@color/white"
                 android:fontFamily="@font/agbalumo"
