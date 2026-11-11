@@ -1,13 +1,13 @@
 <resources>
     <string name="app_name">chat-app</string>
-    <string name="welcome_back">Welcome Back</string>
-    <string name="login_continue">Login to Continue</string>
+    <string name="welcome_back">Welcome Back!</string>
+    <string name="login">Login</string>
     <string name="hint_email">Email</string>
     <string name="hint_password">Password</string>
-    <string name="sign_in">Sign In</string>
-    <string name="create_account">Create New Account</string>
+    <string name="create_account">Create Account</string>
     <string name="create_button_text">Create</string>
     <string name="hint_name">Name</string>
     <string name="confirm_password">Confirm Password</string>
     <string name="add_image">Add Image</string>
+    <string name="sign_in">Login</string>
 </resources>

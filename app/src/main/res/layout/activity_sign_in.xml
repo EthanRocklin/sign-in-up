@@ -9,6 +9,7 @@
     android:overScrollMode="never"
     android:padding="24dp"
     android:scrollbars="none"
+    android:background="@color/background"
     tools:context=".activities.SignInActivity">
 
     <LinearLayout
@@ -26,20 +27,15 @@
             android:textSize="24sp"
             android:textStyle="bold" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/login_continue"
-            android:layout_marginTop="60dp"
-            android:textColor="@color/primary"
-            android:textSize="17sp"
-            android:textStyle="bold"/>
+<!--        <ImageView-->
+<!--            android:layout_width=""-->
+<!--            android:layout_height=""-->
 
         <EditText
             android:id="@+id/inputEmail"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:layout_marginTop="60dp"
+            android:layout_marginTop="40dp"
             android:hint="@string/hint_email"
             android:background="@drawable/background_input"
             android:imeOptions="actionNext"
@@ -48,6 +44,7 @@
             android:paddingStart="16dp"
             android:paddingEnd="16dp"
             android:textColor="@color/primary_text"
+            android:textColorHint="@color/primary_text"
             android:textSize="18sp"/>
 
         <EditText
@@ -64,6 +61,7 @@
             android:paddingEnd="16dp"
             android:textAlignment="gravity"
             android:textColor="@color/primary_text"
+            android:textColorHint="@color/primary_text"
             android:textSize="18sp"/>
 
         <FrameLayout
@@ -80,7 +78,7 @@
                 android:layout_gravity="top|center"
                 android:text="@string/sign_in"
                 android:textColor="@color/white"
-                android:textSize="20sp"
+                android:textSize="24sp"
                 android:textStyle="bold"
                 app:cornerRadius="8sp"/>
 
@@ -100,7 +98,7 @@
             android:layout_marginTop="40dp"
             android:text="@string/create_account"
             android:textColor="@color/primary"
-            android:textSize="18sp"
+            android:textSize="24sp"
             android:textStyle="bold"/>
 
     </LinearLayout>

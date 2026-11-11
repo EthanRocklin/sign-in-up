@@ -1,14 +1,19 @@
 package com.example.chat_app.activities;
 
+import android.animation.ArgbEvaluator;
+import android.animation.ObjectAnimator;
+import android.animation.ValueAnimator;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Base64;
 import android.util.Log;
 import android.util.Patterns;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Toast;
 
@@ -39,6 +44,7 @@ public class SignUpActivity extends AppCompatActivity {
         binding = ActivitySignUpBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         setListeners();
+        setAnimations();
     }
 
     /**
@@ -93,8 +99,36 @@ public class SignUpActivity extends AppCompatActivity {
     /**
      *
      */
+    private void setAnimations() {
+        // Color transition for Create Account text
+        int color1 = Color.argb(255, 216, 61, 105);
+        int color2 = Color.argb(255, 182, 87, 255);
+        ObjectAnimator colorAnimator = ObjectAnimator.ofArgb(
+                binding.textSignIn,
+                "textColor",
+                color1,
+                color2);
+        colorAnimator.setEvaluator(new ArgbEvaluator());
+        colorAnimator.setDuration(2000);
+        colorAnimator.setRepeatCount(ValueAnimator.INFINITE);
+        colorAnimator.setRepeatMode(ValueAnimator.REVERSE);
+        colorAnimator.start();
+        // Squish animation for pressed Sign In button
+        binding.buttonSignUp.setOnTouchListener((v, event) -> {
+            if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                v.animate().scaleX(0.95f).scaleY(0.95f).setDuration(100).start();
+            } else if (event.getAction() == MotionEvent.ACTION_UP || event.getAction() == MotionEvent.ACTION_CANCEL) {
+                v.animate().scaleX(1.0f).scaleY(1.0f).setDuration(100).start();
+            }
+            return false;
+        });
+    }
+
+    /**
+     *
+     */
     private void setListeners() {
-        binding.textCreateAccount.setOnClickListener(v -> onBackPressed());
+        binding.textSignIn.setOnClickListener(v -> onBackPressed());
         binding.buttonSignUp.setOnClickListener(v -> {
             if (isValidDetails()) {
                 signUp();
