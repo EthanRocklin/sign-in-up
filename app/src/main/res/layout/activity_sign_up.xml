@@ -21,8 +21,9 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/create_account"
             android:layout_marginTop="60dp"
+            android:fontFamily="@font/courgette"
+            android:text="@string/create_account"
             android:textColor="@color/primary"
             android:textSize="30sp"
             android:textStyle="bold" />
@@ -46,6 +47,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:fontFamily="@font/courgette"
                 android:text="@string/add_image"
                 android:textColor="@color/secondary_text"
                 android:textSize="12dp"/>
@@ -57,6 +59,7 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginTop="60dp"
+            android:fontFamily="@font/courgette"
             android:hint="@string/hint_name"
             android:background="@drawable/background_input"
             android:imeOptions="actionNext"
@@ -66,13 +69,14 @@
             android:paddingEnd="16dp"
             android:textColor="@color/primary_text"
             android:textColorHint="@color/primary_text"
-            android:textSize="18sp"/>
+            android:textSize="20sp"/>
 
         <EditText
             android:id="@+id/inputEmail"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginTop="15dp"
+            android:fontFamily="@font/courgette"
             android:hint="@string/hint_email"
             android:background="@drawable/background_input"
             android:imeOptions="actionNext"
@@ -82,13 +86,14 @@
             android:paddingEnd="16dp"
             android:textColor="@color/primary_text"
             android:textColorHint="@color/primary_text"
-            android:textSize="18sp"/>
+            android:textSize="20sp"/>
 
         <EditText
             android:id="@+id/inputPassword"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginTop="15dp"
+            android:fontFamily="@font/courgette"
             android:hint="@string/hint_password"
             android:background="@drawable/background_input"
             android:imeOptions="actionNext"
@@ -99,13 +104,14 @@
             android:textAlignment="gravity"
             android:textColor="@color/primary_text"
             android:textColorHint="@color/primary_text"
-            android:textSize="18sp"/>
+            android:textSize="20sp"/>
 
         <EditText
             android:id="@+id/inputConfirmPassword"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginTop="15dp"
+            android:fontFamily="@font/courgette"
             android:hint="@string/confirm_password"
             android:background="@drawable/background_input"
             android:imeOptions="actionNext"
@@ -116,7 +122,7 @@
             android:textAlignment="gravity"
             android:textColor="@color/primary_text"
             android:textColorHint="@color/primary_text"
-            android:textSize="18sp"/>
+            android:textSize="20sp"/>
 
         <FrameLayout
             android:layout_width="match_parent"
@@ -128,6 +134,7 @@
                 android:layout_height="60dp"
                 android:layout_marginTop="20dp"
                 android:layout_gravity="top|center"
+                android:fontFamily="@font/courgette"
                 android:text="@string/create_button_text"
                 android:textColor="@color/white"
                 android:textSize="24sp"
@@ -148,6 +155,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
+            android:fontFamily="@font/courgette"
             android:text="@string/login"
             android:textColor="@color/primary"
             android:textSize="24sp"

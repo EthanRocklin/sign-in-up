@@ -21,11 +21,11 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/welcome_back"
             android:layout_marginTop="60dp"
+            android:fontFamily="@font/agbalumo"
+            android:text="@string/welcome_back"
             android:textColor="@color/primary"
-            android:textSize="24sp"
-            android:textStyle="bold" />
+            android:textSize="30sp"/>
 
         <ImageView
             android:layout_width="80dp"
@@ -38,8 +38,9 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginTop="40dp"
-            android:hint="@string/hint_email"
             android:background="@drawable/background_input"
+            android:fontFamily="@font/courgette"
+            android:hint="@string/hint_email"
             android:imeOptions="actionNext"
             android:importantForAutofill="no"
             android:inputType="textEmailAddress"
@@ -47,13 +48,14 @@
             android:paddingEnd="16dp"
             android:textColor="@color/primary_text"
             android:textColorHint="@color/primary_text"
-            android:textSize="18sp"/>
+            android:textSize="20sp" />
 
         <EditText
             android:id="@+id/inputPassword"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginTop="30dp"
+            android:fontFamily="@font/courgette"
             android:hint="@string/hint_password"
             android:background="@drawable/background_input"
             android:imeOptions="actionNext"
@@ -64,7 +66,7 @@
             android:textAlignment="gravity"
             android:textColor="@color/primary_text"
             android:textColorHint="@color/primary_text"
-            android:textSize="18sp"/>
+            android:textSize="20sp"/>
 
         <FrameLayout
             android:layout_width="match_parent"
@@ -80,8 +82,8 @@
                 android:layout_gravity="top|center"
                 android:text="@string/sign_in"
                 android:textColor="@color/white"
+                android:fontFamily="@font/agbalumo"
                 android:textSize="24sp"
-                android:textStyle="bold"
                 app:cornerRadius="8sp"/>
 
             <ProgressBar
@@ -98,10 +100,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
+            android:fontFamily="@font/agbalumo"
             android:text="@string/create_account"
             android:textColor="@color/primary"
-            android:textSize="24sp"
-            android:textStyle="bold"/>
+            android:textSize="24sp"/>
 
     </LinearLayout>
 
