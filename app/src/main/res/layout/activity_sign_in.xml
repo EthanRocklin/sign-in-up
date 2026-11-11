@@ -27,9 +27,11 @@
             android:textSize="24sp"
             android:textStyle="bold" />
 
-<!--        <ImageView-->
-<!--            android:layout_width=""-->
-<!--            android:layout_height=""-->
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginTop="30dp"
+            android:src="@drawable/app_icon"/>
 
         <EditText
             android:id="@+id/inputEmail"
