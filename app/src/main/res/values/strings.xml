@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">chat-app</string>
+    <string name="app_name">Chatter</string>
     <string name="welcome_back">Welcome Back!</string>
     <string name="login">Login</string>
     <string name="hint_email">Email</string>
