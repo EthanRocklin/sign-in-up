@@ -36,7 +36,7 @@ import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.HashMap;
 
-public class SignUpActivity extends AppCompatActivity {
+public class CreateAccountActivity extends AppCompatActivity {
 
     private ActivitySignUpBinding binding;
     private String encodedImage;
@@ -73,9 +73,10 @@ public class SignUpActivity extends AppCompatActivity {
             });
 
     /**
-     *
-     * @param bitmap
-     * @return
+     * This method encodes the user's uploaded profile image into a common format
+     * and represents the encoded image as a String.
+     * @param bitmap the image's grid of colored pixels
+     * @return a String representing the encoded image
      */
     private String encodeImage(Bitmap bitmap) {
         int previewWidth = 150;
@@ -88,38 +89,42 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     /**
-     *
-     * @param isLoading
+     * This method toggles the visibility Create button and loading icon
+     * based on the login status.
+     * @param isLoading a boolean that indicates if the application is
+     *                  in the process of logging the user in.
      */
     private void loading(Boolean isLoading) {
         if (isLoading) {
-            binding.buttonSignUp.setVisibility(View.INVISIBLE);
+            binding.btnCreate.setVisibility(View.INVISIBLE);
             binding.progressBar.setVisibility(View.VISIBLE);
         } else {
-            binding.buttonSignUp.setVisibility(View.VISIBLE);
+            binding.btnCreate.setVisibility(View.VISIBLE);
             binding.progressBar.setVisibility(View.INVISIBLE);
         }
     }
 
     /**
-     *
+     * This method sets any animations needed for the Sign In (Login) page.
      */
     private void setAnimations() {
         // Color transition for Create Account text
         int color1 = Color.argb(255, 216, 61, 105);
         int color2 = Color.argb(255, 182, 87, 255);
+        int color3 = Color.argb(255, 232, 136, 88);
         ObjectAnimator colorAnimator = ObjectAnimator.ofArgb(
                 binding.textSignIn,
                 "textColor",
                 color1,
-                color2);
+                color2,
+                color3);
         colorAnimator.setEvaluator(new ArgbEvaluator());
-        colorAnimator.setDuration(2000);
+        colorAnimator.setDuration(3000);
         colorAnimator.setRepeatCount(ValueAnimator.INFINITE);
         colorAnimator.setRepeatMode(ValueAnimator.REVERSE);
         colorAnimator.start();
         // Squish animation for pressed Sign In button
-        binding.buttonSignUp.setOnTouchListener((v, event) -> {
+        binding.btnCreate.setOnTouchListener((v, event) -> {
             if (event.getAction() == MotionEvent.ACTION_DOWN) {
                 v.animate().scaleX(0.95f).scaleY(0.95f).setDuration(100).start();
             } else if (event.getAction() == MotionEvent.ACTION_UP || event.getAction() == MotionEvent.ACTION_CANCEL) {
@@ -130,13 +135,13 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     /**
-     *
+     * This method sets any event listeners needed for the Sign In (Login) page.
      */
     private void setListeners() {
         binding.textSignIn.setOnClickListener(v -> onBackPressed());
-        binding.buttonSignUp.setOnClickListener(v -> {
+        binding.btnCreate.setOnClickListener(v -> {
             if (isValidDetails()) {
-                signUp();
+                createAccount();
             }
         });
         binding.profileImage.setOnClickListener(v -> {
@@ -147,15 +152,17 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     /**
-     *
-     * @param text
-     * @return
+     * This method checks for the minimum required amount of lowercase letters
+     *      in the user's inputted password.
+     * @param password the user's inputted password
+     * @return a boolean indicating if the user entered the minimum number of
+     *         lowercase letters
      */
-    private boolean checkForLowercase(String text) {
+    private boolean checkForLowercase(String password) {
         int count = 0;
         // Scans the inputted password for lowercase letters
-        for (int i = 0; i < text.length(); i++) {
-            if (Character.isLowerCase(text.charAt(i))) {
+        for (int i = 0; i < password.length(); i++) {
+            if (Character.isLowerCase(password.charAt(i))) {
                 count++;
             }
         }
@@ -163,15 +170,16 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     /**
-     *
-     * @param text
-     * @return
+     * This method checks for the minimum required amount of digits in the user's
+     *      inputted password.
+     * @param password the user's inputted password
+     * @return a boolean indicating if the user entered the minimum number of digits
      */
-    private boolean checkForNum(String text) {
+    private boolean checkForDigit(String password) {
         int count = 0;
         // Scans the inputted password for lowercase letters
-        for (int i = 0; i < text.length(); i++) {
-            if (Character.isDigit(text.charAt(i))) {
+        for (int i = 0; i < password.length(); i++) {
+            if (Character.isDigit(password.charAt(i))) {
                 count++;
             }
         }
@@ -179,15 +187,17 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     /**
-     *
-     * @param text
-     * @return
+     * This method checks for the minimum required amount of special characters in
+     *      the user's inputted password.
+     * @param password the user's inputted password
+     * @return a boolean indicating if the user entered the minimum number of
+     *         special characters
      */
-    private boolean checkForSpecialChar(String text) {
+    private boolean checkForSpecialChar(String password) {
         int count = 0;
         // Scans the inputted password for lowercase letters
-        for (int i = 0; i < text.length() ; i++) {
-            if (!Character.isLetterOrDigit(text.charAt(i))) {
+        for (int i = 0; i < password.length() ; i++) {
+            if (!Character.isLetterOrDigit(password.charAt(i))) {
                 count++;
             }
         }
@@ -195,15 +205,17 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     /**
-     *
-     * @param text
-     * @return
+     * This method checks for the minimum required amount of uppercase letters
+     *      in the user's inputted password.
+     * @param password the user's inputted password
+     * @return a boolean indicating if the user entered the minimum number of
+     *         uppercase letters
      */
-    private boolean checkForUppercase(String text) {
+    private boolean checkForUppercase(String password) {
         int count = 0;
         // Scans the inputted password for lowercase letters
-        for (int i = 0; i < text.length(); i++) {
-            if (Character.isUpperCase(text.charAt(i))) {
+        for (int i = 0; i < password.length(); i++) {
+            if (Character.isUpperCase(password.charAt(i))) {
                 count++;
             }
         }
@@ -211,8 +223,10 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     /**
-     *
-     * @param inputField
+     * This method highlights the passed EditText field red, green, or its default
+     * color depending on the validity of the input.
+     * @param inputField the EditText field to be highlighted
+     * @param isValid the status of the input's validity (TRUE, FALSE, UNKNOWN)
      */
     private void highlightInputField(EditText inputField, TriState isValid) {
         // Gets the GradientDrawable of the EditText element to change the
@@ -234,17 +248,17 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     /**
-     *
-     * @param message
+     * This method displays a Toast notification message on the user's screen.
+     * @param message the text to include in the notification
      */
     private void showToast(String message) {
         Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
     }
 
     /**
-     *
+     * This method attempts to create an account with the user's inputted details.
      */
-    private void signUp() {
+    private void createAccount() {
         // Checking loading
         loading(true);
         // Post data to Firebase
@@ -267,7 +281,7 @@ public class SignUpActivity extends AppCompatActivity {
                     preferenceManager.putBoolean(Constants.KEY_IS_SIGNED_IN, true);
                     preferenceManager.putString(Constants.KEY_NAME, binding.inputName.getText().toString());
                     preferenceManager.putString(Constants.KEY_IMAGE, encodedImage);
-
+                    // Creates a new Intent for starting the application's main activity upon successful account creation
                     Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);
@@ -279,8 +293,10 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     /**
-     *
-     * @return
+     * This method validates that all the user's inputted account details are valid
+     *      before the application attempts to create a new account with them.
+     * @return a boolean representing if the user's entered account details have
+     *         valid formats
      */
     private Boolean isValidDetails() {
         String nameTrimmed = binding.inputName.getText().toString().trim();
@@ -292,16 +308,30 @@ public class SignUpActivity extends AppCompatActivity {
             return false;
         }
         // Checks all requirements for account details and returns the result
-        return isValidName(nameTrimmed)
+        return isValidImage(encodedImage)
+                && isValidName(nameTrimmed)
                 && isValidEmail(emailTrimmed)
                 && isValidPassword(passwordTrimmed)
                 && isValidPasswordMatch(passwordTrimmed, confirmPasswordTrimmed);
     }
 
     /**
-     *
-     * @param nameTrimmed
-     * @return
+     * This method validates that the user uploaded an image for their new account.
+     * @param encodedImage a String representing the uploaded image after encoding
+     * @return a boolean representing if the user uploaded an image
+     */
+    private Boolean isValidImage(String encodedImage) {
+        if (encodedImage == null) {
+            showToast("Please Select An Image");
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * This method validates that the user's inputted name is validly formatted.
+     * @param nameTrimmed a String to check for a valid format
+     * @return a boolean representing if the inputted name is formatted correctly
      */
     private Boolean isValidName(String nameTrimmed) {
         if (nameTrimmed.isEmpty()) {
@@ -317,9 +347,9 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     /**
-     *
-     * @param emailTrimmed
-     * @return
+     * This method validates that the user entered a validly formatted email address.
+     * @param emailTrimmed the email to check for a valid format
+     * @return a boolean representing if the inputted email is formatted correctly
      */
     private Boolean isValidEmail(String emailTrimmed) {
         highlightInputField(binding.inputName, TriState.UNKNOWN);
@@ -340,9 +370,9 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     /**
-     *
-     * @param passwordTrimmed
-     * @return
+     * This method validates that the user entered a validly formatted email address.
+     * @param passwordTrimmed the email to check for a valid format
+     * @return a boolean representing if the inputted email is formatted correctly
      */
     private Boolean isValidPassword(String passwordTrimmed) {
         highlightInputField(binding.inputEmail, TriState.UNKNOWN);
@@ -358,7 +388,7 @@ public class SignUpActivity extends AppCompatActivity {
             highlightInputField(binding.inputPassword, TriState.FALSE);
             showToast("Password needs at least 4 lowercase letters");
             return false;
-        } else if (!checkForNum(passwordTrimmed)) {
+        } else if (!checkForDigit(passwordTrimmed)) {
             highlightInputField(binding.inputPassword, TriState.FALSE);
             showToast("Password needs at least 2 digits");
             return false;
@@ -375,10 +405,11 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     /**
-     *
-     * @param passwordTrimmed
-     * @param confirmPasswordTrimmed
-     * @return
+     * This method validates that the two passwords the user entered match as part of
+     *      confirming the password to be stored in the database.
+     * @param passwordTrimmed a String representing the first password inputted
+     * @param confirmPasswordTrimmed a String representing the second password inputted
+     * @return a boolean representing the status of the passwords matching
      */
     private Boolean isValidPasswordMatch(String passwordTrimmed, String confirmPasswordTrimmed) {
         if (!passwordTrimmed.equals(confirmPasswordTrimmed)) {

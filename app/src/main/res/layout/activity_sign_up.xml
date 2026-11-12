@@ -10,7 +10,7 @@
     android:padding="24dp"
     android:scrollbars="none"
     android:background="@color/background"
-    tools:context=".activities.SignUpActivity">
+    tools:context=".activities.CreateAccountActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -156,7 +156,7 @@
             android:layout_height="match_parent">
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/buttonSignUp"
+                android:id="@+id/btn_create"
                 android:layout_width="200dp"
                 android:layout_height="60dp"
                 android:layout_marginTop="20dp"

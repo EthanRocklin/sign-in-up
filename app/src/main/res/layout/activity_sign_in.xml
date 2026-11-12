@@ -10,7 +10,7 @@
     android:padding="24dp"
     android:scrollbars="none"
     android:background="@color/background"
-    tools:context=".activities.SignInActivity">
+    tools:context=".activities.LoginActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -89,7 +89,7 @@
             android:animateLayoutChanges="true">
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/buttonSignIn"
+                android:id="@+id/btn_login"
                 android:layout_width="200dp"
                 android:layout_height="60dp"
                 android:layout_marginTop="20dp"
