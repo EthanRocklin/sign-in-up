@@ -8,25 +8,25 @@ Screenshots were taken on a Samsung Galaxy S21.
 
 When the user needs to create a new account:
 
-<img width="30%" height="2400" alt="Screenshot_20261111_164526_chat-app" src="https://github.com/user-attachments/assets/0830786f-ddf0-4245-b5de-09f93fe90f6a" />
-<img width="30%" height="2400" alt="Screenshot_20261111_164531_chat-app" src="https://github.com/user-attachments/assets/e45059ab-a9e6-452d-b327-a95839e59de7" />
-<img width="30%" height="2400" alt="Screenshot_20261111_164606_chat-app" src="https://github.com/user-attachments/assets/98cb2949-baf3-4cf5-8295-932b66b27a87" />
-<img width="30%" height="2400" alt="Screenshot_20261111_164618_chat-app" src="https://github.com/user-attachments/assets/0e41a625-efd8-40a0-9143-5107059bd1e5" />
-<img width="30%" height="2400" alt="Screenshot_20261111_164646_chat-app" src="https://github.com/user-attachments/assets/df39d955-7f7a-4297-af9d-f5b8096f5d44" />
-<img width="30%" height="2400" alt="Screenshot_20261111_164654_chat-app" src="https://github.com/user-attachments/assets/73e0a3ad-9163-4c68-a756-9455f93fa374" />
-<img width="30%" height="2400" alt="Screenshot_20261111_164702_chat-app" src="https://github.com/user-attachments/assets/820b1275-ed4c-4ee7-9dc4-d05bcafcc03d" />
-<img width="30%" height="2400" alt="Screenshot_20261111_164718_chat-app" src="https://github.com/user-attachments/assets/f9d3a19b-d3d0-490f-a4fc-f7ed502328b1" />
-<img width="30%" height="2400" alt="Screenshot_20261111_164722_chat-app" src="https://github.com/user-attachments/assets/478a3662-b1bb-43d4-a7e8-a6c159e0ba70" />
-<img width="30%" height="2400" alt="Screenshot_20261111_164736_chat-app" src="https://github.com/user-attachments/assets/5b47a2d6-32c0-4819-84d8-b85f85c82861" />
-<img width="30%" height="2400" alt="Screenshot_20261111_164743_chat-app" src="https://github.com/user-attachments/assets/d8086657-82fd-4850-9677-18568af13f09" />
-<img width="30%" height="2400" alt="Screenshot_20261111_164756_chat-app" src="https://github.com/user-attachments/assets/208f66ca-2d8a-4d88-9c42-f04fff04ae8e" />
-<img width="30%" height="2400" alt="Screenshot_20261111_164814_chat-app" src="https://github.com/user-attachments/assets/e9f776ae-0a07-4ef8-907d-b83108ee0025" />
-<img width="30%" height="2400" alt="Screenshot_20261111_164838_chat-app" src="https://github.com/user-attachments/assets/dcb5d452-e3d2-4fb5-829a-37707dcc3186" />
+<img width="1080" height="2400" alt="Screenshot_20261112_215606_Chatter" src="https://github.com/user-attachments/assets/dab67c08-a86d-4a1c-a252-e704761c1d9c" />
+<img width="1080" height="2400" alt="Screenshot_20261112_215610_Chatter" src="https://github.com/user-attachments/assets/c4617df0-1724-4822-834a-8cb30e021e45" />
+<img width="1080" height="2400" alt="Screenshot_20261112_215627_Chatter" src="https://github.com/user-attachments/assets/7dd41e35-b264-4e18-8863-f1d45e059e5c" />
+<img width="1080" height="2400" alt="Screenshot_20261112_215639_Chatter" src="https://github.com/user-attachments/assets/20300a13-c0c3-4ec3-8e0b-d950b93bd671" />
+<img width="1080" height="2400" alt="Screenshot_20261112_215651_Chatter" src="https://github.com/user-attachments/assets/7a755048-f099-4fc8-b990-28eab2b0ada5" />
+<img width="1080" height="2400" alt="Screenshot_20261112_215704_Chatter" src="https://github.com/user-attachments/assets/1c5dbee2-bb13-49ea-8dc0-401d3f343b2a" />
+<img width="1080" height="2400" alt="Screenshot_20261112_215710_Chatter" src="https://github.com/user-attachments/assets/79b20cf2-3735-4c81-9c31-0547363b7813" />
+<img width="1080" height="2400" alt="Screenshot_20261112_215722_Chatter" src="https://github.com/user-attachments/assets/da49acdb-e86c-4930-8af9-696190504f1e" />
+<img width="1080" height="2400" alt="Screenshot_20261112_215734_Chatter" src="https://github.com/user-attachments/assets/7692310a-892a-486b-b5cf-678faf585f5d" />
+<img width="1080" height="2400" alt="Screenshot_20261112_215741_Chatter" src="https://github.com/user-attachments/assets/0bb820f7-d86c-4a38-b614-1a19165c3861" />
+<img width="1080" height="2400" alt="Screenshot_20261112_215752_Chatter" src="https://github.com/user-attachments/assets/e165978a-9c53-43be-82e8-59a3e70cb4fc" />
+<img width="1080" height="2400" alt="Screenshot_20261112_215800_Chatter" src="https://github.com/user-attachments/assets/5e15730e-c14e-436a-88d9-c004343e5e58" />
+<img width="1080" height="2400" alt="Screenshot_20261112_215809_Chatter" src="https://github.com/user-attachments/assets/55cef83c-efbb-4d96-b0b9-50e5063dec6e" />
+<img width="1080" height="2400" alt="Screenshot_20261112_215819_Chatter" src="https://github.com/user-attachments/assets/7203b8a7-ff6e-41b4-8ace-408a480a6c00" />
+<img width="1080" height="2400" alt="Screenshot_20261112_215833_Chatter" src="https://github.com/user-attachments/assets/4704d510-8bc7-44f0-bfe2-a054e0b6d02b" />
 
-After the user has created an account with valid details:
+After creating an account, any future application launches will start the user at the Login page, where the user now has valid credentials for:
 
-<img width="30%" height="2400" alt="Screenshot_20261111_164958_chat-app" src="https://github.com/user-attachments/assets/cf4b4b9a-dc0f-4019-8b79-02f9375deff3" />
-<img width="30%" height="2400" alt="Screenshot_20261111_165018_chat-app" src="https://github.com/user-attachments/assets/eade4641-d71b-4ff8-b140-7001cd05e401" />
-<img width="30%" height="2400" alt="Screenshot_20261111_165036_chat-app" src="https://github.com/user-attachments/assets/cafead98-a469-48ea-96e6-2eaa85cb7370" />
-<img width="30%" height="2400" alt="Screenshot_20261111_165116_chat-app" src="https://github.com/user-attachments/assets/2cbd8a58-fca8-41b2-90ce-6a81c472f753" />
+<img width="1080" height="2400" alt="Screenshot_20261112_215924_Chatter" src="https://github.com/user-attachments/assets/66d207d0-2109-477a-a790-67a19e373785" />
+<img width="1080" height="2400" alt="Screenshot_20261112_215934_Chatter" src="https://github.com/user-attachments/assets/b4ce1e6a-f8bd-45ab-84c7-739fbaf58f97" />
+<img width="1080" height="2400" alt="Screenshot_20261112_215957_Chatter" src="https://github.com/user-attachments/assets/4be8e253-2e72-408b-b026-c7a7a659c81c" />
 <img width="30%" height="2400" alt="Screenshot_20261111_165131_chat-app" src="https://github.com/user-attachments/assets/de1aac27-e96f-400a-be64-4d0fef768202" />
