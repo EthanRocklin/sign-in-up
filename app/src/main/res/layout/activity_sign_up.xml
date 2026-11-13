@@ -60,7 +60,6 @@
             android:id="@+id/inputFirstName"
             android:hint="@string/hint_first_name"
             android:inputType="textPersonName"
-            android:layout_marginTop="50dp"
             style="@style/input_field"/>
 
         <EditText
