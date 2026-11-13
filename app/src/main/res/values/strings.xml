@@ -6,7 +6,8 @@
     <string name="hint_password">Password</string>
     <string name="create_account">Create Account</string>
     <string name="create_button_text">Create</string>
-    <string name="hint_name">Name</string>
+    <string name="hint_first_name">First Name</string>
+    <string name="hint_last_name">Last Name</string>
     <string name="confirm_password">Confirm Password</string>
     <string name="add_image">Add Image</string>
     <string name="sign_in">Login</string>

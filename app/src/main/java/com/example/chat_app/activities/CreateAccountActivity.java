@@ -264,7 +264,8 @@ public class CreateAccountActivity extends AppCompatActivity {
         // Post data to Firebase
         FirebaseFirestore database = FirebaseFirestore.getInstance();
         HashMap<String, String> user = new HashMap<>();
-        user.put(Constants.KEY_NAME, binding.inputName.getText().toString());
+        user.put(Constants.KEY_FIRST_NAME, binding.inputFirstName.getText().toString());
+        user.put(Constants.KEY_LAST_NAME, binding.inputLastName.getText().toString());
         user.put(Constants.KEY_EMAIL, binding.inputEmail.getText().toString());
         user.put(Constants.KEY_PASSWORD, binding.inputPassword.getText().toString());
         user.put(Constants.KEY_IMAGE, encodedImage);
@@ -274,12 +275,15 @@ public class CreateAccountActivity extends AppCompatActivity {
                 .addOnSuccessListener(documentReference -> {
                     loading(false);
                     // Highlights input fields with green indicating valid credentials
-                    highlightInputField(binding.inputName, TriState.TRUE);
+                    highlightInputField(binding.inputFirstName, TriState.TRUE);
+                    highlightInputField(binding.inputLastName, TriState.TRUE);
                     highlightInputField(binding.inputEmail, TriState.TRUE);
                     highlightInputField(binding.inputPassword, TriState.TRUE);
                     highlightInputField(binding.inputConfirmPassword, TriState.TRUE);
+                    // Configures data values in the preferenceManager
                     preferenceManager.putBoolean(Constants.KEY_IS_SIGNED_IN, true);
-                    preferenceManager.putString(Constants.KEY_NAME, binding.inputName.getText().toString());
+                    preferenceManager.putString(Constants.KEY_FIRST_NAME, binding.inputFirstName.getText().toString());
+                    preferenceManager.putString(Constants.KEY_LAST_NAME, binding.inputLastName.getText().toString());
                     preferenceManager.putString(Constants.KEY_IMAGE, encodedImage);
                     // Creates a new Intent for starting the application's main activity upon successful account creation
                     Intent intent = new Intent(getApplicationContext(), MainActivity.class);
@@ -299,7 +303,8 @@ public class CreateAccountActivity extends AppCompatActivity {
      *         valid formats
      */
     private Boolean isValidDetails() {
-        String nameTrimmed = binding.inputName.getText().toString().trim();
+        String fristNameTrimmed = binding.inputFirstName.getText().toString().trim();
+        String lastNameTrimmed = binding.inputLastName.getText().toString().trim();
         String emailTrimmed = binding.inputEmail.getText().toString().trim();
         String passwordTrimmed = binding.inputPassword.getText().toString().trim();
         String confirmPasswordTrimmed = binding.inputConfirmPassword.getText().toString().trim();
@@ -309,7 +314,8 @@ public class CreateAccountActivity extends AppCompatActivity {
         }
         // Checks all requirements for account details and returns the result
         return isValidImage(encodedImage)
-                && isValidName(nameTrimmed)
+                && isValidFirstName(fristNameTrimmed)
+                && isValidLastName(lastNameTrimmed)
                 && isValidEmail(emailTrimmed)
                 && isValidPassword(passwordTrimmed)
                 && isValidPasswordMatch(passwordTrimmed, confirmPasswordTrimmed);
@@ -329,18 +335,37 @@ public class CreateAccountActivity extends AppCompatActivity {
     }
 
     /**
-     * This method validates that the user's inputted name is validly formatted.
-     * @param nameTrimmed a String to check for a valid format
-     * @return a boolean representing if the inputted name is formatted correctly
+     * This method validates that the user's inputted first name is validly formatted.
+     * @param firstNameTrimmed a String to check for a valid format
+     * @return a boolean representing if the inputted first name is formatted correctly
      */
-    private Boolean isValidName(String nameTrimmed) {
-        if (nameTrimmed.isEmpty()) {
-            highlightInputField(binding.inputName, TriState.FALSE);
-            showToast("Please Enter Your Name");
+    private Boolean isValidFirstName(String firstNameTrimmed) {
+        if (firstNameTrimmed.isEmpty()) {
+            highlightInputField(binding.inputFirstName, TriState.FALSE);
+            showToast("Please Enter Your First Name");
             return false;
-        } else if (nameTrimmed.length() > 45) {
-            highlightInputField(binding.inputName, TriState.FALSE);
-            showToast("Name must not exceed 45 characters");
+        } else if (firstNameTrimmed.length() > 45) {
+            highlightInputField(binding.inputFirstName, TriState.FALSE);
+            showToast("First name must not exceed 45 characters");
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * This method validates that the user's inputted last name is validly formatted.
+     * @param lastNameTrimmed a String to check for a valid format
+     * @return a boolean representing if the inputted last name is formatted correctly
+     */
+    private Boolean isValidLastName(String lastNameTrimmed) {
+        highlightInputField(binding.inputFirstName, TriState.UNKNOWN);
+        if (lastNameTrimmed.isEmpty()) {
+            highlightInputField(binding.inputLastName, TriState.FALSE);
+            showToast("Please Enter Your Last Name");
+            return false;
+        } else if (lastNameTrimmed.length() > 45) {
+            highlightInputField(binding.inputLastName, TriState.FALSE);
+            showToast("Last name must not exceed 45 characters");
             return false;
         }
         return true;
@@ -352,7 +377,7 @@ public class CreateAccountActivity extends AppCompatActivity {
      * @return a boolean representing if the inputted email is formatted correctly
      */
     private Boolean isValidEmail(String emailTrimmed) {
-        highlightInputField(binding.inputName, TriState.UNKNOWN);
+        highlightInputField(binding.inputLastName, TriState.UNKNOWN);
         if (emailTrimmed.isEmpty()) {
             highlightInputField(binding.inputEmail, TriState.FALSE);
             showToast("Please Enter Your Email");

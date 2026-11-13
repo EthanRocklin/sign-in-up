@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="input_field">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">50dp</item>
+        <item name="android:layout_marginTop">15dp</item>
+        <item name="android:fontFamily">@font/courgette</item>
+        <item name="android:background">@drawable/background_input</item>
+        <item name="android:imeOptions">actionNext</item>
+        <item name="android:importantForAutofill">no</item>
+        <item name="android:paddingStart">16dp</item>
+        <item name="android:paddingEnd">16dp</item>
+        <item name="android:textColor">@color/primary_text</item>
+        <item name="android:textColorHint">@color/primary_text</item>
+        <item name="android:textSize">20sp</item>
+    </style>
+</resources>

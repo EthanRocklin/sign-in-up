@@ -57,38 +57,23 @@
 
         <!-- Input Fields -->
         <EditText
-            android:id="@+id/inputName"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginTop="60dp"
-            android:fontFamily="@font/courgette"
-            android:hint="@string/hint_name"
-            android:background="@drawable/background_input"
-            android:imeOptions="actionNext"
-            android:importantForAutofill="no"
-            android:inputType="textEmailAddress"
-            android:paddingStart="16dp"
-            android:paddingEnd="16dp"
-            android:textColor="@color/primary_text"
-            android:textColorHint="@color/primary_text"
-            android:textSize="20sp"/>
+            android:id="@+id/inputFirstName"
+            android:hint="@string/hint_first_name"
+            android:inputType="textPersonName"
+            android:layout_marginTop="50dp"
+            style="@style/input_field"/>
+
+        <EditText
+            android:id="@+id/inputLastName"
+            android:hint="@string/hint_last_name"
+            android:inputType="textPersonName"
+            style="@style/input_field"/>
 
         <EditText
             android:id="@+id/inputEmail"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginTop="15dp"
-            android:fontFamily="@font/courgette"
             android:hint="@string/hint_email"
-            android:background="@drawable/background_input"
-            android:imeOptions="actionNext"
-            android:importantForAutofill="no"
             android:inputType="textEmailAddress"
-            android:paddingStart="16dp"
-            android:paddingEnd="16dp"
-            android:textColor="@color/primary_text"
-            android:textColorHint="@color/primary_text"
-            android:textSize="20sp"/>
+            style="@style/input_field"/>
 
         <!-- Password Field w/ See Password Toggle -->
         <com.google.android.material.textfield.TextInputLayout
@@ -102,21 +87,11 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/inputPassword"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:fontFamily="@font/courgette"
                 android:hint="@string/hint_password"
-                android:background="@drawable/background_input"
-                android:imeOptions="actionNext"
-                android:importantForAutofill="no"
                 android:inputType="textPassword"
-                android:paddingStart="16dp"
-                android:paddingEnd="16dp"
                 android:paddingTop="0dp"
                 android:paddingBottom="0dp"
-                android:textColor="@color/primary_text"
-                android:textColorHint="@color/primary_text"
-                android:textSize="20sp" />
+                style="@style/input_field"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -132,21 +107,11 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/inputConfirmPassword"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:fontFamily="@font/courgette"
                 android:hint="@string/confirm_password"
-                android:background="@drawable/background_input"
-                android:imeOptions="actionNext"
-                android:importantForAutofill="no"
                 android:inputType="textPassword"
-                android:paddingStart="16dp"
-                android:paddingEnd="16dp"
                 android:paddingTop="0dp"
                 android:paddingBottom="0dp"
-                android:textColor="@color/primary_text"
-                android:textColorHint="@color/primary_text"
-                android:textSize="20sp" />
+                style="@style/input_field"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -159,7 +124,7 @@
                 android:id="@+id/btn_create"
                 android:layout_width="200dp"
                 android:layout_height="60dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="40dp"
                 android:layout_gravity="top|center"
                 android:backgroundTint="@color/primary"
                 android:fontFamily="@font/courgette"
