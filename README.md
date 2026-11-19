@@ -1,6 +1,8 @@
 # sign-in-up
 This repository contains the functionality for logging in or creating an account and was built for CS 460, Software Engineering for Mobile Devices, at Central Washington University. Its primary language is Java and was developed in Android Studio (API level 26). It includes name, email, and password validation for robust credential creation and storage. 
 
+Demonstration Video: https://youtu.be/8Q6u-vvGg6w
+
 Screenshots were taken on a Samsung Galaxy S21.
 
 <img width="30%" height="2400" alt="Screenshot_20261111_204327_One UI Home" src="https://github.com/user-attachments/assets/463d77fa-9b0e-4f6f-9180-77fbf1e39746" />
